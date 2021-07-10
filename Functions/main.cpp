@@ -25,44 +25,35 @@ int g_a;//(g_ -Global (Hungarian notation-венгерская нотация))глобальная пременн
 const int ROWS = 5;
 const int COLS = 8;
 
-void FillRand(int arr[], const int n);
+template<typename T>
+void FillRand(T arr[], const int n);
 void FillRand(double arr[], const int n);
 void FillRand(float arr[], const int n);
 void FillRand(char arr[], const int n);
 void FillRand(short arr[], const int n);
 void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS);//Function declaration-Обьявление функции
-void Print(int arr[], const int n);
-void Print(double arr[], const int n);
-void Print(float arr[], const int n);
-void Print(char arr[], const int n);
-void Print(short arr[], const int n);
-void Print(int arr[ROWS][COLS], const int ROWS, const int COLS);
-void Input(int arr[], const int n);
-void PrintReverse(int arr[], const int n);
-void PrintReverse(double arr[], const int n);
-void PrintReverse(float arr[], const int n);
-void PrintReverse(char arr[], const int n);
-void PrintReverse(short arr[], const int n);
-double Sum(int arr[], const int n);
-double Sum(double arr[], const int n);
-float Sum(float arr[], const int n);
-char Sum(char arr[], const int n);
-short Sum(short arr[], const int n);
-double Avg(int arr[], const int n);
-double Avg(double arr[], const int n);
-float Avg(float arr[], const int n);
-char Avg(char arr[], const int n);
-short Avg(short arr[], const int n);
-int minValueIn(int arr[], const int n);
-double minValueIn(double arr[], const int n);
-float minValueIn(float arr[], const int n);
-char minValueIn(char arr[], const int n);
-short minValueIn(short arr[], const int n);
-int maxValueIn(int arr[], const int n);
-double maxValueIn(double arr[], const int n);
-float maxValueIn(float arr[], const int n);
-char maxValueIn(char arr[], const int n);
-short maxValueIn(short arr[], const int n);
+
+template<typename T>
+void Print(T arr[], const int n);
+
+template<typename T>
+void Print(T arr[ROWS][COLS], const int ROWS, const int COLS);
+
+template<typename T>
+void PrintReverse(T arr[], const int n);
+
+template<typename T>
+T Sum(T arr[], const int n);
+
+
+template<typename T>
+double Avg(T arr[], const int n);
+
+template<typename T>
+T minValueIn(T arr[], const int n);
+
+template<typename T>
+T maxValueIn(T arr[], const int n);
 
 /*void main()
 {
@@ -213,47 +204,14 @@ void main()
 	cout << "Миниммальное значение:" << minValueIn(arr, n) << endl;
 	cout << "Максимальное значение:" << maxValueIn(arr, n) << endl;
 
-	double d_arr[n];//double array
-	FillRand(d_arr, n);
-	Print(d_arr, n);
-	PrintReverse(d_arr, n);
-	cout << "сумма элементов массива:" << Sum(d_arr, n) << endl;
-	cout << "Среднее арифметическое:" << Avg(d_arr, n) << endl;
-	cout << "Миниммальное значение:" << minValueIn(d_arr, n) << endl;
-	cout << "Максимальное значение:" << maxValueIn(d_arr, n) << endl;
-
-	float f_arr[n];//float array
-	FillRand(f_arr, n);
-	Print(f_arr, n);
-	PrintReverse(f_arr, n);
-	cout << "сумма элементов массива:" << Sum(f_arr, n) << endl;
-	cout << "Среднее арифметическое:" << Avg(f_arr, n) << endl;
-	cout << "Миниммальное значение:" << minValueIn(f_arr, n) << endl;
-	cout << "Максимальное значение:" << maxValueIn(f_arr, n) << endl;
-
-	char c_arr[n] = { 40,31,7,25,23 };//char array
-	Print(c_arr, n);
-	PrintReverse(c_arr, n);
-	cout << "сумма элементов массива:" << Sum(c_arr, n) << endl;
-	cout << "Среднее арифметическое:" << Avg(c_arr, n) << endl;
-	cout << "Миниммальное значение:" << minValueIn(c_arr, n) << endl;
-	cout << "Максимальное значение:" << maxValueIn(c_arr, n) << endl;
-
-	short s_arr[n];
-	FillRand(s_arr, n);
-	Print(s_arr, n);
-	PrintReverse(s_arr, n);
-	cout << "сумма элементов массива:" << Sum(s_arr, n) << endl;
-	cout << "Среднее арифметическое:" << Avg(s_arr, n) << endl;
-	cout << "Миниммальное значение:" << minValueIn(s_arr, n) << endl;
-	cout << "Максимальное значение:" << maxValueIn(s_arr, n) << endl;
 	cout << "+++++++++++++ARRAYS 2D+++++++++++++++\n";
 	int i_arr_2[ROWS][COLS];
 	FillRand(i_arr_2, ROWS, COLS);
 	Print(i_arr_2, ROWS, COLS);
 }
 
-void FillRand(int arr[], const int n)
+template<typename T>
+void FillRand(T arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -305,7 +263,8 @@ void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS)//Function def
 	}
 }
 
-void Print(int arr[], const int n)
+template<typename T>
+void Print(T arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -345,7 +304,8 @@ void Print(short arr[], const int n)
 	}
 	cout << endl;
 }
-void Print(int arr[ROWS][COLS], const int ROWS, const int COLS)//Function definition-Обьявление функции
+template<typename T>
+void Print(T arr[ROWS][COLS], const int ROWS, const int COLS)//Function definition-Обьявление функции
 {
 	for (int i = 0; i < ROWS; i++)
 	{
@@ -357,44 +317,8 @@ void Print(int arr[ROWS][COLS], const int ROWS, const int COLS)//Function defini
 	}
 }
 
-
-void PrintReverse(int arr[], const int n)
-{
-	for (int i = n - 1; i >= 0; i--)
-	{
-		cout << arr[i] << tab;
-	}
-	cout << endl;
-
-}
-void PrintReverse(double arr[], const int n)
-{
-	for (int i = n - 1; i >= 0; i--)
-	{
-		cout << arr[i] << tab;
-	}
-	cout << endl;
-
-}
-void PrintReverse(float arr[], const int n)
-{
-	for (int i = n - 1; i >= 0; i--)
-	{
-		cout << arr[i] << tab;
-	}
-	cout << endl;
-
-}
-void PrintReverse(char arr[], const int n)
-{
-	for (int i = n - 1; i >= 0; i--)
-	{
-		cout << arr[i] << tab;
-	}
-	cout << endl;
-
-}
-void PrintReverse(short arr[], const int n)
+template<typename T>
+void PrintReverse(T arr[], const int n)
 {
 	for (int i = n - 1; i >= 0; i--)
 	{
@@ -404,116 +328,30 @@ void PrintReverse(short arr[], const int n)
 
 }
 
-double Sum(int arr[], const int n)
+
+template<typename T>
+T Sum(T arr[], const int n)
 {
-	double Sum = 0;
+	T Sum = 0;//ЛОкальная переменная шаблонного типа
 	for (int i = 0; i < n; i++)
 	{
 		Sum = Sum + arr[i];
 	}
-	return Sum;
-}
-double Sum(double arr[], const int n)
-{
-	double Sum = 0;
-	for (int i = 0; i < n; i++)
-	{
-		Sum = Sum + arr[i];
-	}
-	return Sum;
-}
-float Sum(float arr[], const int n)
-{
-	float Sum = 0;
-	for (int i = 0; i < n; i++)
-	{
-		Sum = Sum + arr[i];
-	}
-	return Sum;
-}
-char Sum(char arr[], const int n)
-{
-	char Sum = 0;
-	for (int i = 0; i < n; i++)
-	{
-		Sum = Sum + arr[i];
-	}
-	return Sum;
-}
-short Sum(short arr[], const int n)
-{
-	short Sum = 0;
-	for (int i = 0; i < n; i++)
-	{
-		Sum = Sum + arr[i];
-	}
-	return Sum;
+	return Sum;//Возвращаемое значение шаблоного типа
+
 }
 
-double Avg(int arr[], const int n)
+template<typename T>
+double Avg(T arr[], const int n)
 {
 	return (double)Sum(arr, n) / n;
 }
-double Avg(double arr[], const int n)
-{
-	return Sum(arr, n) / n;
-}
-float Avg(float arr[], const int n)
-{
-	return Sum(arr, n) / n;
-}
-char Avg(char arr[], const int n)
-{
-	return Sum(arr, n) / n;
-}
-short Avg(short arr[], const int n)
-{
-	return Sum(arr, n) / n;
-}
 
-int minValueIn(int arr[], const int n)
-{
-	int minValue = arr[0];
-	for (int i = 0; i < n; i++)
-	{
-		if (arr[i] < minValue)minValue = arr[i];
-	}
-	return minValue;
 
-}
-double minValueIn(double arr[], const int n)
+template<typename T>
+T minValueIn(T arr[], const int n)
 {
-	double minValue = arr[0];
-	for (int i = 0; i < n; i++)
-	{
-		if (arr[i] < minValue)minValue = arr[i];
-	}
-	return minValue;
-
-}
-float minValueIn(float arr[], const int n)
-{
-	float minValue = arr[0];
-	for (int i = 0; i < n; i++)
-	{
-		if (arr[i] < minValue)minValue = arr[i];
-	}
-	return minValue;
-
-}
-char minValueIn(char arr[], const int n)
-{
-	char minValue = arr[0];
-	for (int i = 0; i < n; i++)
-	{
-		if (arr[i] < minValue)minValue = arr[i];
-	}
-	return minValue;
-
-}
-short minValueIn(short arr[], const int n)
-{
-	short minValue = arr[0];
+	T minValue = arr[0];
 	for (int i = 0; i < n; i++)
 	{
 		if (arr[i] < minValue)minValue = arr[i];
@@ -522,49 +360,14 @@ short minValueIn(short arr[], const int n)
 
 }
 
-int maxValueIn(int arr[], const int n)
+template<typename T>
+T maxValueIn(T arr[], const int n)
 {
-	int maxValue = arr[0];
+	T max = arr[0];
 	for (int i = 0; i < n; i++)
 	{
-		if (arr[i] > maxValue)maxValue = arr[i];
+		if ( arr[i] > max)max = arr[i];
 	}
-	return maxValue;
-}
-double maxValueIn(double arr[], const int n)
-{
-	double maxValue = arr[0];
-	for (int i = 0; i < n; i++)
-	{
-		if (arr[i] > maxValue)maxValue = arr[i];
-	}
-	return maxValue;
-}
-float maxValueIn(float arr[], const int n)
-{
-	float maxValue = arr[0];
-	for (int i = 0; i < n; i++)
-	{
-		if (arr[i] > maxValue)maxValue = arr[i];
-	}
-	return maxValue;
-}
-char maxValueIn(char arr[], const int n)
-{
-	char maxValue = arr[0];
-	for (int i = 0; i < n; i++)
-	{
-		if (arr[i] > maxValue)maxValue = arr[i];
-	}
-	return maxValue;
-}
-short maxValueIn(short arr[], const int n)
-{
-	short maxValue = arr[0];
-	for (int i = 0; i < n; i++)
-	{
-		if (arr[i] > maxValue)maxValue = arr[i];
-	}
-	return maxValue;
+	return max;
 }
 
