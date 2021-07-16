@@ -222,8 +222,8 @@ void main()
 	setlocale(LC_ALL, "Russian");
 	const int n = 8;
 	int arr[n] = { 1, 2, 3,4,5 };
-	Sort(arr, n);
 	FillRand(arr, n);
+	Sort(arr, n);
 	Print(arr, n);
 	PrintReverse(arr, n);
 	cout << "Summa:" << Sum(arr, n) << endl;
@@ -234,6 +234,7 @@ void main()
 	cout << "+++++++++++++ARRAYS 2D+++++++++++++++\n";
 	int i_arr_2[ROWS][COLS];
 	FillRand(i_arr_2, ROWS, COLS);
+	Sort(i_arr_2, ROWS, COLS);
 	Print(i_arr_2, ROWS, COLS);
 	PrintReverse(i_arr_2, ROWS, COLS);
 	cout << "Summa:" << Sum(i_arr_2, ROWS, COLS) << endl;
@@ -416,12 +417,12 @@ void Print(T arr[ROWS][COLS], const int ROWS, const int COLS)//Function definiti
 	cout << endl;
 }
 
-template<class T>
-void Sort(T arr[],const int size)
+template<typename T>
+void Sort(T arr[],const int n)
 {
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < size; j++)
+		for (int j = 0; j < n; j++)
 		{
 			if (arr[i] < arr[j])
 			{
@@ -430,6 +431,21 @@ void Sort(T arr[],const int size)
 		}
 	}
 }
+template<typename T>
+void Sort(T arr[ROWS][COLS],const int ROWS,const int COLS)//Пробовал сделать SORT,но он не работает...долго размышлял ,и полез в книги там был SWAP функция подмены...но не уверен что так должно быть.
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (arr[i] > arr[j])
+			{
+				swap(arr[i], arr[j]);
+			}
+		}
+	}
+}
+
 template<typename T>
 void PrintReverse(T arr[], const int n)
 {
