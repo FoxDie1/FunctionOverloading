@@ -1,5 +1,6 @@
 #include<iostream>
 #include <conio.h>
+#include <algorithm> 
 using namespace std;
 
 /*
@@ -27,11 +28,19 @@ const int COLS = 8;
 
 template<typename T>
 void FillRand(T arr[], const int n);
+
 void FillRand(double arr[], const int n);
 void FillRand(float arr[], const int n);
 void FillRand(char arr[], const int n);
 void FillRand(short arr[], const int n);
+
+template<typename T>
+void FillRand(T arr[ROWS][COLS], const int ROWS, const int COLS);
 void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS);//Function declaration-Обьявление функции
+void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS);
+void FillRand(float arr[ROWS][COLS], const int ROWS, const int COLS);
+void FillRand(char arr[ROWS][COLS], const int ROWS, const int COLS);
+void FillRand(short arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T>
 void Print(T arr[], const int n);
@@ -41,19 +50,36 @@ void Print(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T>
 void PrintReverse(T arr[], const int n);
+template<typename T>
+void PrintReverse(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T>
 T Sum(T arr[], const int n);
+template<typename T>
+T Sum(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 
 template<typename T>
 double Avg(T arr[], const int n);
+template<typename T>
+double Avg(T arr[ROWS][COLS], const int ROWS, const int COLS);
+
 
 template<typename T>
 T minValueIn(T arr[], const int n);
+template<typename T>
+T minValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS);
+
 
 template<typename T>
 T maxValueIn(T arr[], const int n);
+template<typename T>
+T maxValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS);
+
+template<typename T>
+void Sort(T arr[], const int n);
+template <typename T>
+void Sort(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 /*void main()
 {
@@ -194,8 +220,9 @@ double Sum(int arr[], const int n)
 void main()
 {
 	setlocale(LC_ALL, "Russian");
-	const int n = 5;
+	const int n = 8;
 	int arr[n] = { 1, 2, 3,4,5 };
+	Sort(arr, n);
 	FillRand(arr, n);
 	Print(arr, n);
 	PrintReverse(arr, n);
@@ -208,6 +235,31 @@ void main()
 	int i_arr_2[ROWS][COLS];
 	FillRand(i_arr_2, ROWS, COLS);
 	Print(i_arr_2, ROWS, COLS);
+	PrintReverse(i_arr_2, ROWS, COLS);
+	cout << "Summa:" << Sum(i_arr_2, ROWS, COLS) << endl;
+	cout << "Среднее арифметическое:" << Avg(i_arr_2, ROWS, COLS) << endl;
+	cout << "Миниммальное значение:" << minValueIn(i_arr_2, ROWS, COLS) << endl;
+	cout << "Максимальное значение:" << maxValueIn(i_arr_2, ROWS, COLS) << endl;
+
+	
+
+	double d_arr_2[ROWS][COLS];
+	FillRand(d_arr_2, ROWS, COLS);
+	Print(d_arr_2, ROWS, COLS);
+	//cout << "Среднее арифметическое:" << Avg(d_arr_2, ROWS, COLS) << endl;
+
+	float f_arr_2[ROWS][COLS];
+	FillRand(f_arr_2, ROWS, COLS);
+	Print(f_arr_2, ROWS, COLS);
+	
+	char c_arr_2[ROWS][COLS];
+	FillRand(c_arr_2, ROWS, COLS);
+	Print(c_arr_2, ROWS, COLS);
+	
+	short s_arr_2[ROWS][COLS];
+	FillRand(s_arr_2, ROWS, COLS);
+	Print(s_arr_2, ROWS, COLS);
+
 }
 
 template<typename T>
@@ -251,6 +303,8 @@ void FillRand(short arr[], const int n)
 		//Функция rand () возвращает число в промежутке от 0 до 32767
 	}
 }
+
+
 void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS)//Function definition-Обьявление функции
 {
 	//определяет что делает функция
@@ -260,6 +314,50 @@ void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS)//Function def
 		{
 			arr[i][j] = rand() % 100;
 		}
+	}
+}
+void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			arr[i][j] =double (rand() % 100)/10;
+		}
+		cout << endl;
+	}
+}
+void FillRand(float arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			arr[i][j] =float (rand() % 100)/10;
+		}
+		cout << endl;
+	}
+}
+void FillRand(char arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			arr[i][j] =char (rand() % 100);
+		}
+		cout << endl;
+	}
+}
+void FillRand(short arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			arr[i][j] =short (rand() % 100);
+		}
+		cout << endl;
 	}
 }
 
@@ -315,8 +413,23 @@ void Print(T arr[ROWS][COLS], const int ROWS, const int COLS)//Function definiti
 		}
 		cout << endl;
 	}
+	cout << endl;
 }
 
+template<class T>
+void Sort(T arr[],const int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			if (arr[i] < arr[j])
+			{
+				swap(arr[i], arr[j]);
+			}
+		}
+	}
+}
 template<typename T>
 void PrintReverse(T arr[], const int n)
 {
@@ -325,9 +438,20 @@ void PrintReverse(T arr[], const int n)
 		cout << arr[i] << tab;
 	}
 	cout << endl;
-
 }
-
+template <typename T>
+void PrintReverse(T arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = ROWS-1; i >= 0; i--)
+	{
+		for (int j = 0; j< COLS; j++)
+		{
+			cout << arr[i][j] << tab;
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
 
 template<typename T>
 T Sum(T arr[], const int n)
@@ -340,13 +464,40 @@ T Sum(T arr[], const int n)
 	return Sum;//Возвращаемое значение шаблоного типа
 
 }
+template<typename T>
+T Sum(T arr[ROWS][COLS], const int ROWS,const int COLS)
+{
+	T Sum = 0;//ЛОкальная переменная шаблонного типа
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j <COLS; j++)
+		{
+			Sum = Sum +arr[i][j];
+		}
+		return Sum;//Возвращаемое значение шаблоного типа
+	}
+	cout << endl;
+}
 
 template<typename T>
 double Avg(T arr[], const int n)
 {
 	return (double)Sum(arr, n) / n;
 }
-
+template<typename T>
+double Avg(T arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	double Sum = 0;
+	double Avg = 0;
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			Sum = Sum + arr[i][j];
+		}
+		return  Avg = Sum / ROWS;
+	}
+}
 
 template<typename T>
 T minValueIn(T arr[], const int n)
@@ -359,6 +510,20 @@ T minValueIn(T arr[], const int n)
 	return minValue;
 
 }
+template<typename T>
+T minValueIn(T arr[ROWS][COLS], const int ROWS,const int COLS)
+{
+	T minValue = arr[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (arr[i][j] < minValue)minValue = arr[i][j];
+		}
+	}
+	return minValue;
+
+}
 
 template<typename T>
 T maxValueIn(T arr[], const int n)
@@ -367,6 +532,19 @@ T maxValueIn(T arr[], const int n)
 	for (int i = 0; i < n; i++)
 	{
 		if ( arr[i] > max)max = arr[i];
+	}
+	return max;
+}
+template<typename T>
+T maxValueIn(T arr[ROWS][COLS], const int ROWS,const int COLS)
+{
+	T max = arr[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (arr[i][j] > max)max = arr[i][j];
+		}
 	}
 	return max;
 }
