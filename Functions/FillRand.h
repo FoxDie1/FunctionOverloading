@@ -1,4 +1,5 @@
 #pragma once
+
 #include "STDAFX.h"
 
 template<typename T>void FillRand(T arr[], const int n);
@@ -9,7 +10,8 @@ void FillRand(float arr[], const int n);
 void FillRand(char arr[], const int n);
 void FillRand(short arr[], const int n);
 
-template<typename T>void FillRand(T arr[ROWS][COLS], const int ROWS, const int COLS);//Function definition-Обьявление функции
+template<typename T>
+void FillRand(T arr[ROWS][COLS], const int ROWS, const int COLS);//Function definition-Обьявление функции
 
 void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS);//Function declaration-Обьявление функции
 void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS);

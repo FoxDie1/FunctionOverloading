@@ -1,7 +1,7 @@
 #include "STDAFX.h"
 #include "FillRand.h"
-#include "Print.h"
-#include "Statistics.h"
+#include "Print.cpp"
+#include "Statistics.cpp"
 
 
 /*void main()
